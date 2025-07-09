@@ -1,4 +1,4 @@
-# Humanoid RL: Reinforcement Learning for Humanoid Robotics
+# Humanoid RL: Reinforcement Learning for Humanoid
 
 <div align="center">
 
@@ -7,7 +7,7 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey)
 
-**Train and deploy your own humanoid robot controller using state-of-the-art reinforcement learning techniques**
+**Train and deploy your own humanoid using state-of-the-art reinforcement learning techniques**
 
 [Quick Start](#quick-start) • [Documentation](#documentation) • [Examples](#examples) • [Troubleshooting](#troubleshooting)
 
@@ -66,11 +66,11 @@ The framework is designed to be both research-friendly and production-ready, mak
    ```bash
    pip install -r requirements.txt
    
-   # For GPU acceleration (recommended)
+   # For GPU acceleration (necessary)
    pip install 'jax[cuda12]'
    
    # Verify GPU installation
-   python -c "import jax; print(f'JAX backend: {jax.default_backend()}')"
+   python -c "import jax; print(f'JAX backend: {jax.default_backend()}')" # should return "gpu"
    ```
 
 ### Training Your First Policy
@@ -132,7 +132,7 @@ Monitor your training progress:
 # View TensorBoard logs
 tensorboard --logdir humanoid_walking_task
 
-# Or access via web browser at http://localhost:6006
+# Or access via web browser at http://localhost:6006 or any provided links
 ```
 
 ### Model Evaluation
@@ -144,7 +144,7 @@ tensorboard --logdir humanoid_walking_task
 
 2. **Load and evaluate a checkpoint**
    ```bash
-   python -m train run_mode=view load_from_ckpt_path=humanoid_walking_task/run_001/checkpoints/ckpt.bin
+   python -m train run_mode=view load_from_ckpt_path=humanoid_walking_task/run_01/checkpoints/ckpt.bin
    ```
 
 3. **Convert to deployment format**
@@ -200,6 +200,20 @@ nvidia-smi
 python -c "import jax; print(jax.devices())"
 ```
 
+**OpenGL/MESA graphics errors**
+```bash
+# Error: libGL error: MESA-LOADER: failed to open iris
+# Solution: Set LD_PRELOAD environment variable
+export LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libstdc++.so.6:/usr/lib/x86_64-linux-gnu/libGLEW.so"
+```
+
+**Cython compilation errors**
+```bash
+# Error: Cython.Compiler.Errors.CompileError: /home/archer/.mujoco/mujoco-py/mujoco_py/cymj.pyx
+# Solution: Install compatible Cython version
+pip install "cython<3"
+```
+
 **Out of memory errors**
 - Reduce `num_envs` and `batch_size`
 - Close other GPU-intensive applications
@@ -222,18 +236,6 @@ python -c "import jax; print(jax.devices())"
 - **Community**: [k-scale Discord](https://url.kscale.dev/discord)
 - **Issues**: Create an issue on this repository
 
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Development Setup
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -245,12 +247,3 @@ We would like to express our sincere gratitude to [k-scale labs](https://kscale.
 For more information about k-scale labs and their work, visit [https://kscale.dev/](https://kscale.dev/) or join their [Discord community](https://url.kscale.dev/discord).
 
 ---
-
-<div align="center">
-
-**Made with ❤️ by the Humanoid RL Community**
-
-[![GitHub stars](https://img.shields.io/github/stars/<YOUR_USERNAME>/humanoid_rl?style=social)](https://github.com/<YOUR_USERNAME>/humanoid_rl)
-[![GitHub forks](https://img.shields.io/github/forks/<YOUR_USERNAME>/humanoid_rl?style=social)](https://github.com/<YOUR_USERNAME>/humanoid_rl)
-
-</div>
