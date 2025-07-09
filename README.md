@@ -85,3 +85,9 @@ You can also visualize the pre-trained model by combining these two commands:
 ```bash
 python -m train load_from_ckpt_path=assets/ckpt.bin run_mode=view
 ```
+
+## Acknowledgments
+
+We would like to express our sincere gratitude to [k-scale labs](https://kscale.dev/) for their groundbreaking work in humanoid robotics and reinforcement learning. This project builds upon their innovative research and open-source contributions to the robotics community. Their dedication to advancing the field of humanoid locomotion and making these technologies accessible to researchers and developers worldwide has been invaluable.
+
+For more information about k-scale labs and their work, visit [https://kscale.dev/](https://kscale.dev/) or join their [Discord community](https://url.kscale.dev/discord).
